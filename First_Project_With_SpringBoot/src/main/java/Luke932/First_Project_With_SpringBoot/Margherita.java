@@ -6,44 +6,51 @@ import java.util.List;
 public class Margherita implements Pizza {
 	private List<String> toppings = new ArrayList<>();
 	private String size;
+	private String name = "Margherita"; // Nome predefinito
 
 	public Margherita() {
 		size = "Standard";
+		addToppings("pomodoro");
+		addToppings("mozzarella");
+	}
+
+	public Margherita createCopyWithNewName(String name) {
+		Margherita copiedPizza = new Margherita();
+		copiedPizza.setName(name);
+		copiedPizza.setSize(this.getSize());
+		copiedPizza.setToppings(new ArrayList<>(this.getToppings())); // Copia gli ingredienti senza ripetizioni
+		return copiedPizza;
 	}
 
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
-		return "Margherita";
+		return name; // Restituisce il nome impostato con setName() o "Margherita" se non è stato
+						// impostato
 	}
 
 	@Override
 	public String getDescription() {
-		// TODO Auto-generated method stub
 		return "Pomodoro e mozzarella";
 	}
 
 	@Override
 	public double getPrice() {
-		// TODO Auto-generated method stub
-		return 8.00;
+		double basePrice = 8.0;
+		return basePrice + toppings.size() * 1.5;
 	}
 
 	@Override
 	public String getNutritionInfo() {
-		// TODO Auto-generated method stub
 		return "90 calorie";
 	}
 
 	@Override
 	public List<String> getToppings() {
-		// TODO Auto-generated method stub
 		return toppings;
 	}
 
 	@Override
 	public String getSize() {
-		// TODO Auto-generated method stub
 		return size;
 	}
 
@@ -55,4 +62,12 @@ public class Margherita implements Pizza {
 		this.size = size;
 	}
 
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	// Aggiungi questo metodo per impostare la nuova lista di ingredienti
+	public void setToppings(List<String> toppings) {
+		this.toppings = toppings;
+	}
 }

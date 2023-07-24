@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ConfigurationBeans {
 
+	// Esercizio1
 	@Bean
 	String getHth() {
 		return "Ciao Mondo";

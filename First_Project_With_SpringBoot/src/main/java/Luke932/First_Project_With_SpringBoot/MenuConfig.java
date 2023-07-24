@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class MenuConfig {
 
+	// Esercizio2
 	@Bean
 	public Topping Prosciutto() {
 		return new Prosciutto();
@@ -33,7 +34,14 @@ public class MenuConfig {
 
 	@Bean
 	public Pizza Margherita() {
-		return new Margherita();
+		return createMargherita("Margherita");
+	}
+
+	@Bean
+	public Pizza createMargherita(String name) {
+		Margherita margherita = new Margherita();
+		margherita.setName(name);
+		return margherita;
 	}
 
 }
