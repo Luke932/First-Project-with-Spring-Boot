@@ -11,9 +11,11 @@ public class Menu {
 
 	public void addMenuItem(Pizza item) {
 		if (item instanceof Margherita) {
-			// Se l'item è una Margherita, crea una copia con il nuovo nome
+			// Se l'item è una Margherita, crea una copia senza il suffisso "(copia)" e
+			// aggiungi al menu
 			Margherita margherita = (Margherita) item;
-			menuItems.add(margherita.createCopyWithNewName(margherita.getName()));
+			Margherita copiedPizza = margherita.createCopyWithNewName(margherita.getName(), false);
+			menuItems.add(copiedPizza);
 		} else {
 			// Altrimenti aggiungi l'item senza modifiche
 			menuItems.add(item);
@@ -23,11 +25,21 @@ public class Menu {
 	public void printMenu() {
 		for (Pizza pizza : menuItems) {
 			System.out.print(pizza.getName());
-			List<String> toppings = new ArrayList<>(pizza.getToppings());
+			List<Topping> toppings = pizza.getToppings();
 			if (!toppings.isEmpty()) {
-				System.out.print(" (" + String.join(", ", toppings) + ")");
+				List<String> toppingNames = new ArrayList<>();
+				for (Topping topping : toppings) {
+					toppingNames.add(topping.getName());
+				}
+				System.out.print(" (" + String.join(", ", toppingNames) + ")");
 			}
-			System.out.println("    " + pizza.getNutritionInfo() + "   " + pizza.getPrice() + " €");
+			if (pizza instanceof Margherita) {
+				Margherita margherita = (Margherita) pizza;
+				System.out.println("    " + margherita.getTotalCalories() + " calorie   " + pizza.getPrice() + " €");
+			} else {
+				System.out.println("    " + "Calorie non disponibili" + "   " + pizza.getPrice() + " €");
+			}
 		}
 	}
+
 }

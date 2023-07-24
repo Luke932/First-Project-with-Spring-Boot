@@ -9,9 +9,9 @@ public interface Pizza {
 
 	double getPrice();
 
-	String getNutritionInfo();
+	int getTotalCalories();
 
-	List<String> getToppings();
+	List<Topping> getToppings();
 
 	String getSize();
 }
