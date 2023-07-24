@@ -46,15 +46,13 @@ public class Margherita implements Pizza {
 		// TODO Auto-generated method stub
 		return size;
 	}
-	
+
 	public void addToppings(String topping) {
 		toppings.add(topping);
 	}
-	
-	public void setSize (String size) {
-	this.size = size;
-	}
-	
+
+	public void setSize(String size) {
+		this.size = size;
 	}
 
 }
