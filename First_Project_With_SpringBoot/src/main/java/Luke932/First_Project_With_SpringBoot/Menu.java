@@ -11,13 +11,10 @@ public class Menu {
 
 	public void addMenuItem(Pizza item) {
 		if (item instanceof Margherita) {
-			// Se l'item è una Margherita, crea una copia senza il suffisso "(copia)" e
-			// aggiungi al menu
 			Margherita margherita = (Margherita) item;
 			Margherita copiedPizza = margherita.createCopyWithNewName(margherita.getName(), false);
 			menuItems.add(copiedPizza);
 		} else {
-			// Altrimenti aggiungi l'item senza modifiche
 			menuItems.add(item);
 		}
 	}

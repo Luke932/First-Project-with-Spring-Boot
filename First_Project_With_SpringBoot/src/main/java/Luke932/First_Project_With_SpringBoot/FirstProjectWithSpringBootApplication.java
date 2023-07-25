@@ -1,6 +1,5 @@
 package Luke932.First_Project_With_SpringBoot;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -12,9 +11,6 @@ import lombok.extern.slf4j.Slf4j;
 @ComponentScan("Luke932.First_Project_With_SpringBoot")
 @Slf4j
 public class FirstProjectWithSpringBootApplication {
-
-	@Autowired
-	private Menu menu;
 
 	public static void main(String[] args) {
 		SpringApplication.run(FirstProjectWithSpringBootApplication.class, args);
