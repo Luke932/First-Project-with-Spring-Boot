@@ -19,7 +19,7 @@ public class FirstProjectWithSpringBootApplication {
 		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(
 				FirstProjectWithSpringBootApplication.class);
 		log.info(ctx.getBean("getHth").toString());
-
+		System.out.println();
 		FirstProjectWithSpringBootApplication app = ctx.getBean(FirstProjectWithSpringBootApplication.class);
 		app.run(ctx);
 
