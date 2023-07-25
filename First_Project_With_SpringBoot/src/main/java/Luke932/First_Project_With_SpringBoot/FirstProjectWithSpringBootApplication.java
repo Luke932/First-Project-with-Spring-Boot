@@ -25,24 +25,25 @@ public class FirstProjectWithSpringBootApplication {
 		log.info(ctx.getBean("getHth").toString());
 
 		FirstProjectWithSpringBootApplication app = ctx.getBean(FirstProjectWithSpringBootApplication.class);
-		app.run();
+		app.run(ctx);
 
 		ctx.close();
 	}
 
-	public void run() {
-		AnnotationConfigApplicationContext ctz = new AnnotationConfigApplicationContext(MenuConfig.class);
+	public void run(AnnotationConfigApplicationContext ctx) {
+		Menu menu = ctx.getBean(Menu.class);
 
-		menu.addMenuItem(ctz.getBean("Margherita", Margherita.class));
-		Margherita customMargherita = (Margherita) ctz.getBean("createMargherita", Margherita.class, "4Gusti",
-				ctz.getBean("pomodoro", Topping.class), ctz.getBean("mozzarella", Topping.class));
-		customMargherita.addTopping(ctz.getBean("prosciutto", Topping.class));
-		customMargherita.addTopping(ctz.getBean("wurstel", Topping.class));
-		customMargherita.addTopping(ctz.getBean("funghi", Topping.class));
-		menu.addMenuItem(customMargherita);
+		Pizza margherita = ctx.getBean("margherita", Pizza.class);
+		menu.addMenuItem(margherita);
+
+		Margherita quattroGusti = ((Margherita) ctx.getBean("margherita", Pizza.class)).createCopyWithNewName("4Gusti",
+				false);
+		quattroGusti.addTopping(ctx.getBean("prosciutto", Topping.class));
+		quattroGusti.addTopping(ctx.getBean("wurstel", Topping.class));
+		quattroGusti.addTopping(ctx.getBean("funghi", Topping.class));
+		menu.addMenuItem(quattroGusti);
 
 		menu.printMenu();
-
-		ctz.close();
 	}
+
 }
